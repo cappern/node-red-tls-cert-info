@@ -1,0 +1,102 @@
+<script type="text/javascript">
+  RED.nodes.registerType('tls-cert-info',{
+      category: 'function',
+      color: '#a6bbcf',
+      defaults: {
+          name: {value:""}
+      },
+      inputs:1,
+      outputs:1,
+      icon: "fa fa-file fa-lock",
+      label: function() {
+          return this.name||"tls-cert-info";
+      },
+      oneditprepare: function() {
+          // Fyller ut formfelter med eksisterende konfigurasjon
+          var hostField = $("#node-input-host");
+          hostField.val(this.host);
+
+          var portField = $("#node-input-port");
+          portField.val(this.port);
+      },
+      oneditsave: function() {
+          // Lagrer konfigurasjonen
+          this.host = $("#node-input-host").val();
+          this.port = $("#node-input-port").val();
+      }
+  });
+</script>
+
+<script type="text/html" data-template-name="tls-cert-info">
+  <div class="form-row">
+      <label for="node-input-host"><i class="fa fa-globe"></i> Hostname</label>
+      <input type="text" id="node-input-host" placeholder="Hostname">
+  </div>
+
+  <div class="form-row">
+      <label for="node-input-port"><i class="fa fa-plug"></i> Port</label>
+      <input type="text" id="node-input-port" placeholder="Port number (default 443)">
+  </div>
+</script>
+
+<script type="text/markdown" data-help-name="tls-cert-info">
+
+A Node-RED node that retrieves SSL/TLS certificate information from a given host and port.
+
+### Inputs
+
+- `host` (*string*, required) - hostname to connect to.
+- `port` (*integer*, optional) - port number to connect to (default is `443`).
+- `topic` (*string*, optional) - the MQTT topic to publish to.
+
+### Outputs
+
+- `payload` (*object*) - an object containing the certificate details.
+  - `subject` (*object*) - an object containing the details of the subject of the certificate.
+  - `keysize` (*integer*) - the size of the key used in the certificate.
+  - `serialnumber` (*string*) - the serial number of the certificate.
+  - `validFrom` (*string*) - the date and time when the certificate becomes valid.
+  - `validTo` (*string*) - the date and time when the certificate expires.
+  - `san` (*string*) - a list of Subject Alternative Names (SANs) present in the certificate.
+  - `pem` (*string*) - the PEM-formatted certificate.
+
+### Details
+
+The `tls-cert-info` node retrieves the SSL/TLS certificate information from the given host and port.
+
+The `msg.payload` object contains the following properties:
+
+- `subject`: an object containing the details of the subject of the certificate. [Learn more about Subject in certificates](https://en.wikipedia.org/wiki/Subject_(X.509)).
+- `keysize`: the size of the key used in the certificate. [Learn more about key size in certificates](https://en.wikipedia.org/wiki/Key_size).
+- `serialnumber`: the serial number of the certificate. [Learn more about Serial Numbers in certificates](https://en.wikipedia.org/wiki/Serial_number).
+- `validFrom`: the date and time when the certificate becomes valid. [Learn more about certificate validity period](https://en.wikipedia.org/wiki/X.509#Validity).
+- `validTo`: the date and time when the certificate expires. [Learn more about certificate validity period](https://en.wikipedia.org/wiki/X.509#Validity).
+- `san`: a list of Subject Alternative Names (SANs) present in the certificate. [Learn more about Subject Alternative Names in certificates](https://en.wikipedia.org/wiki/Subject_Alternative_Name).
+- `pem`: the PEM-formatted certificate.
+
+If `msg.payload` contains an object, it will be converted to a JSON string before being sent. If it contains a binary buffer, the message will be published as-is.
+
+The `hostname` and `port` values can be configured in the node's configuration or set by `msg.host` and `msg.port`, respectively.
+
+### Example Output
+
+```json
+{
+  "subject": {
+    "C": "IT",
+    "ST": "Modena",
+    "L": "Maranello",
+    "O": "Ferrari S.p.A.",
+    "CN": "www.ferrari.com"
+  },
+  "keysize": 2048,
+  "serialnumber": "76BFCD7",
+  "validFrom": "Feb 24 16:18:51 2023 GMT",
+  "validTo": "Mar  6 16:18:51 2024 GMT",
+  "san": "DNS:www.ferrari.com, DNS:ferrari.com",
+  "pem": "-----BEGIN CERTIFICATE-----FKSDIFADFKI873MIIG-----END CERTIFICATE-----"
+}
+
+  
+</script>
+

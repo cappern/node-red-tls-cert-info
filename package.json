@@ -1,0 +1,21 @@
+{
+  "name": "@cappern/node-red-tls-cert-info",
+  "version": "1.0.0",
+  "description": "",
+  "main": "TlsCertInfoNode.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [ "node-red" ],
+  "node-red": {
+    "nodes": {
+      "TlsCertInfoNode": "TlsCertInfoNode.js"
+    }
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "tls": "^0.0.1"
+  }
+}
