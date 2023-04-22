@@ -13,7 +13,7 @@
     }
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "crypto": "^1.0.1",
     "tls": "^0.0.1"
