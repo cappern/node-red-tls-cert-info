@@ -3,8 +3,8 @@ module.exports = function (RED) {
         RED.nodes.createNode(this, config);
         var node = this;
 
-        const tls = require("tls");
-        const crypto = require("crypto");
+        const tls = require("node:tls");
+        const crypto = require("node:crypto");
 
         function toPem(rawCert) {
             const base64Cert = rawCert.toString("base64");
@@ -54,13 +54,13 @@ module.exports = function (RED) {
             });
 
             socket.on("error", (error) => {
-                console.log("Feil ved TCP-tilkobling:", error);
+                console.log("TCP connection error:", error);
                 setStatus({ fill: "red", shape: "ring", text: `Error: ${error}` });
             });
         });
 
         node.on('close', function (done) {
-            setStatus({ fill: "red", shape: "ring", text: "disconnected" });
+            setStatus({ fill: "red", shape: "ring", text: "Disconnected" });
             done();
         });
     }
