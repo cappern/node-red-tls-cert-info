@@ -1,12 +1,20 @@
 {
   "name": "@cappern/node-red-tls-cert-info",
-  "version": "1.1.0",
-  "description": "",
+  "version": "1.1.1",
+  "description": "A Node-RED node that retrieves SSL/TLS certificate information from a given host and port.",
   "main": "TlsCertInfoNode.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [ "node-red" ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cappern/node-red-tls-cert-info.git"
+  },
+  "keywords": [
+    "node-red",
+    "tls",
+    "ssl-cert"
+  ],
   "node-red": {
     "nodes": {
       "TlsCertInfoNode": "TlsCertInfoNode.js"
@@ -14,6 +22,8 @@
   },
   "author": "cappern",
   "license": "MIT",
-  "dependencies": {
-  }
+  "bugs": {
+    "url": "https://github.com/cappern/node-red-tls-cert-info/issues"
+  },
+  "homepage": "https://github.com/cappern/node-red-tls-cert-info#readme"
 }
