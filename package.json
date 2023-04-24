@@ -1,6 +1,6 @@
 {
   "name": "@cappern/node-red-tls-cert-info",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A Node-RED node that retrieves SSL/TLS certificate information from a given host and port.",
   "engines": {
     "node": ">=18.15.0"
