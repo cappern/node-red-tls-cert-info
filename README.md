@@ -1,4 +1,4 @@
-# node-red-contrib-tls-cert-info
+# node-red-tls-cert-info
 
 A Node-RED node that retrieves SSL/TLS certificate information from a given host and port.
 
@@ -113,7 +113,6 @@ Here is an example flow that retrieves the SSL/TLS certificate information from 
 ## References
 
 - [Node-RED](https://nodered.org/)
-- [MQTT](https://mqtt.org/)
 - [SSL/TLS](https://en.wikipedia.org/wiki/Transport_Layer_Security)
 
 ## License
