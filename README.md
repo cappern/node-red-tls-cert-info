@@ -44,70 +44,12 @@ The `hostname` and `port` values can be configured in the node's configuration o
 
 ### Example Flow
 
-Here is an example flow that retrieves the SSL/TLS certificate information from `google.com` and outputs it to the debug console:
+Here is an example flow that retrieves the SSL/TLS certificate information from `www.ferrari.com` and outputs it to the debug console:
+
+![Example screenshot](assets/Example.png)
 
 ```json
-[
-    {
-        "id": "99c1431f.4fa728",
-        "type": "tls-cert-info",
-        "z": "6cf16babd7098725",
-        "name": "",
-        "x": 770,
-        "y": 1220,
-        "wires": [
-            [
-                "78c9df9.88d968"
-            ]
-        ]
-    },
-    {
-        "id": "78c9df9.88d968",
-        "type": "debug",
-        "z": "6cf16babd7098725",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 990,
-        "y": 1220,
-        "wires": []
-    },
-    {
-        "id": "60eee8872b041bc2",
-        "type": "inject",
-        "z": "6cf16babd7098725",
-        "name": "",
-        "props": [
-            {
-                "p": "host",
-                "v": "www.apple.com",
-                "vt": "str"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 510,
-        "y": 1220,
-        "wires": [
-            [
-                "99c1431f.4fa728"
-            ]
-        ]
-    }
-]
+[{"id":"d9458ee26e50ecd5","type":"inject","z":"d2e014450d0e3a4b","name":"Start","props":[{"p":"payload"},{"p":"topic","vt":"str"}],"repeat":"","crontab":"","once":false,"onceDelay":0.1,"topic":"","payload":"","payloadType":"date","x":150,"y":220,"wires":[["50d9be476b07daeb"]]},{"id":"3023f57f560d34c4","type":"debug","z":"d2e014450d0e3a4b","name":"Output SSL-CERT","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"payload","targetType":"msg","statusVal":"","statusType":"auto","x":830,"y":220,"wires":[]},{"id":"50d9be476b07daeb","type":"change","z":"d2e014450d0e3a4b","name":"","rules":[{"t":"set","p":"host","pt":"msg","to":"www.ferrari.com","tot":"str"}],"action":"","property":"","from":"","to":"","reg":false,"x":370,"y":220,"wires":[["481470c97bd45b0d"]]},{"id":"5590eabc990e75f9","type":"comment","z":"d2e014450d0e3a4b","name":"Set Params","info":"","x":370,"y":160,"wires":[]},{"id":"a2090b54dbf45c3e","type":"comment","z":"d2e014450d0e3a4b","name":"Get Certificate","info":"","x":590,"y":160,"wires":[]},{"id":"22f6d42603cf75ed","type":"comment","z":"d2e014450d0e3a4b","name":"Output Result","info":"","x":810,"y":160,"wires":[]},{"id":"481470c97bd45b0d","type":"tls-cert-info","z":"d2e014450d0e3a4b","name":"","x":590,"y":220,"wires":[["3023f57f560d34c4"]]}]
 ```
 
 ## References
