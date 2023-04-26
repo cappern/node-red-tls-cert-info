@@ -26,14 +26,14 @@ module.exports = function (RED) {
 
             const socket = tls.connect(options, () => {
                 
-                // Henter ut sertifikatet til verten
-                var certificate = socket.getPeerCertificate(true);
-                //console.log("Sertifikat hentet:", certificate);
 
-                // Konverterer sertifikatet til PEM-format
+                var certificate = socket.getPeerCertificate(true);
+
+
+
                 const pem = toPem(certificate.raw);
 
-                // Legger til informasjon om sertifikatet i msg.cert
+
                 msg.payload = {
                     subject: certificate.subject,
                     keysize: certificate.bits,
@@ -47,9 +47,6 @@ module.exports = function (RED) {
                 msg.host = msg.host
                 setStatus({ fill: "green", shape: "dot", text: `Fetched SSL-CERT from ${msg.host}` });
                 node.send(msg);
-
-
-                // Avslutter TCP-tilkoblingen
                 socket.end();
             });
 
