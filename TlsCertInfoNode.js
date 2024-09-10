@@ -26,7 +26,7 @@ module.exports = function (RED) {
 
             const socket = tls.connect(options, () => {
                 var certificate = socket.getPeerCertificate(true);
-                var cipher = socet.getCipher()
+                var cipher = socket.getCipher()
                 var ephemeralKeyInfo = socket.getEphemeralKeyInfo
                 const pem = toPem(certificate.raw);
                 msg.payload = {
